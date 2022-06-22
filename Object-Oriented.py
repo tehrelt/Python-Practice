@@ -109,7 +109,7 @@ while True:
                 employee.show()
                 print('')
                 i += 1
-            index = inputInRange('Введите номер сотрудника, которого хотите удалить: ', 0, i-1)
+            index = inputInRange('Введите номер сотрудника, которого хотите удалить: ', 0, i)
             toremove = employees.pop(int(index)-1)
             del toremove
         case '6':
@@ -119,7 +119,7 @@ while True:
                 turner.show()
                 print('')
                 i += 1
-            index = inputInRange('Введите номер сотрудника, которого хотите удалить: ', 0, i-1)
+            index = inputInRange('Введите номер сотрудника, которого хотите удалить: ', 0, i)
             toremove = turners.pop(int(index)-1)
             del toremove
         case '7':
@@ -129,7 +129,7 @@ while True:
                 employee.show()
                 print('')
                 i += 1
-            index = inputInRange('Введите номер сотрудника, возраст которого хотите увеличить: ', 0, i-1)
+            index = inputInRange('Введите номер сотрудника, возраст которого хотите увеличить: ', 0, i)
             age = inputInRange('На сколько лет увеличить возраст: ')
             employees[int(index)-1].growUp(age)
         case '8':
@@ -139,7 +139,7 @@ while True:
                 turner.show()
                 print('')
                 i += 1
-            index = inputInRange('Введите номер сотрудника, отдел которого хотите изменить: ', 0, i-1)
+            index = inputInRange('Введите номер сотрудника, отдел которого хотите изменить: ', 0, i)
             department = inputInRange('Введите новый отдел: ')
             turners[int(index)-1].changeDepartment(department)
         case '9':

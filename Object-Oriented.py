@@ -29,9 +29,9 @@ class Employee(object):
 
     def show(self):
         print('ФИО: ' + self.fio)
-        print('Номер: ' + self.number)
-        print('Стаж: ' + self.stage)
-        print('Возраст: ' + self.age)
+        print('Номер: ' + str(self.number))
+        print('Стаж: ' + str(self.stage))
+        print('Возраст: ' + str(self.age))
 
 class Turner(Employee):
     def __init__(self, fio, number, stage, age, experience, department):
@@ -44,8 +44,8 @@ class Turner(Employee):
     
     def show(self):
         super().show()
-        print('Опыт: ' + self.experience)
-        print('Отдел: ' + self.department)
+        print('Опыт: ' + str(self.experience))
+        print('Отдел: ' + str(self.department))
 
 employees = []
 turners = []
@@ -68,7 +68,9 @@ while True:
     print('4. Вывести информацию о токарях')
     print('5. Удалить объект сотрудника')
     print('6. Удалить объект токаря')
-    print('7. Выход')
+    print('7. Увеличить возраст сотрудника')
+    print('8. Поменять отдел токаря')
+    print('9. Выход')
     key = input('Введите номер действия: ')
     os.system('cls')
     match key:
@@ -121,6 +123,26 @@ while True:
             toremove = turners.pop(int(index)-1)
             del toremove
         case '7':
+            i = 0
+            for employee in employees:
+                print('\tСотрудник #' + str(i+1))
+                employee.show()
+                print('')
+                i += 1
+            index = inputInRange('Введите номер сотрудника, возраст которого хотите увеличить: ', 0, i-1)
+            age = inputInRange('На сколько лет увеличить возраст: ')
+            employees[int(index)-1].growUp(age)
+        case '8':
+            i = 0
+            for turner in turners:
+                print('\tСотрудник-Токарь #' + str(i+1))
+                turner.show()
+                print('')
+                i += 1
+            index = inputInRange('Введите номер сотрудника, отдел которого хотите изменить: ', 0, i-1)
+            department = inputInRange('Введите новый отдел: ')
+            turners[int(index)-1].changeDepartment(department)
+        case '9':
             break
     print('\n')
 

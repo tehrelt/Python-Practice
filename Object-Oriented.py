@@ -49,6 +49,18 @@ class Turner(Employee):
 
 employees = []
 turners = []
+
+def inputInRange(message, min = 0, max = 300000000):
+    while True:
+        try:
+            value = int(input(message))
+            if value >= min and value <= max:
+                return value
+            else:
+                print('Введено неверное значение')
+        except ValueError:
+            print('Введено неверное значение')
+
 while True:
     print('1. Создать сотрудника')
     print('2. Создать токаря')
@@ -62,17 +74,17 @@ while True:
     match key:
         case '1':
             fio = input('Введите ФИО: ')
-            number = input('Введите номер: ')
-            stage = input('Введите стаж: ')
-            age = input('Введите возраст: ')
+            number = inputInRange('Введите номер: ')
+            stage = inputInRange('Введите стаж: ')
+            age = inputInRange('Введите возраст: ')
             employees.append(Employee(fio, number, stage, age))
         case '2':
             fio = input('Введите ФИО: ')
-            number = input('Введите номер: ')
-            stage = input('Введите стаж: ')
-            age = input('Введите возраст: ')
-            experience = input('Введите опыт: ')
-            department = input('Введите отдел: ')
+            number = inputInRange('Введите номер: ')
+            stage = inputInRange('Введите стаж: ')
+            age = inputInRange('Введите возраст: ')
+            experience = inputInRange('Введите опыт: ')
+            department = inputInRange('Введите отдел: ')
             turners.append(Turner(fio, number, stage, age, experience, department))
         case '3':
             i = 0
@@ -95,8 +107,7 @@ while True:
                 employee.show()
                 print('')
                 i += 1
-            print('Введите номер сотрудника, которого хотите удалить: ')
-            index = input('Введите номер сотрудника: ')
+            index = inputInRange('Введите номер сотрудника, которого хотите удалить: ', 0, i-1)
             toremove = employees.pop(int(index)-1)
             del toremove
         case '6':
@@ -106,12 +117,12 @@ while True:
                 turner.show()
                 print('')
                 i += 1
-            print('Введите номер сотрудника-токаря, которого хотите удалить: ')
-            index = input('Введите номер сотрудника-токаря: ')
+            index = inputInRange('Введите номер сотрудника, которого хотите удалить: ', 0, i-1)
             toremove = turners.pop(int(index)-1)
             del toremove
         case '7':
             break
     print('\n')
+
 
 

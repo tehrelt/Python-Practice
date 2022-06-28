@@ -13,7 +13,6 @@
 # ПДК превышает D? [вещество, среднесуточная ПДК, отношение
 # максимальной разовой ПДК к среднесуточная ПДК].
 
-
 import os
 
 while True:
@@ -26,40 +25,42 @@ while True:
     match key:
         case '1':
             print('Записать в файл')
-            f = open('file.txt', 'a')
-            key = 'y'
+            with open('file.txt', 'a', encoding='utf-8') as f:
+                key = 'y'
 
-            while key == 'y':
-                name = input('Введите вещество: ')           
-                maxPDK = float(input('Введите максимальную разовую ПДК: '))      
-                averagePDK = float(input('Введите среднесуточную ПДК: '))
-                classOfDanger = int(input('Введите класс опасности: '))
-                f.write(name + ' ' + str(maxPDK) + ' ' + str(averagePDK) + ' ' + str(classOfDanger) + '\n')
-                key = ' '
-                while key != 'n' and key != 'y':
-                    key = input('Добавить ещё одно вещество? (y/n): ')
-
-            f.close()
+                while key == 'y':
+                    row = {}
+                    row['name'] = input('Введите вещество: ')           
+                    row['max_pdk'] = float(input('Введите максимальную разовую ПДК: '))      
+                    row['average_pdk'] = float(input('Введите среднесуточную ПДК: '))
+                    row['class_of_danger'] = int(input('Введите класс опасности: '))
+                    f.write(row['name'] + ' ' + str(row['max_pdk']) + ' ' + str(row['average_pdk']) + ' ' + str(row['class_of_danger']) + '\n')
+                    key = ''
+                    while key != 'n' and key != 'y':
+                        key = input('Добавить ещё одно вещество? (y/n): ')
 
 
         case '2':
             print('Прочитать из файла')
-            f = open('file.txt', 'r')
-            for line in f:
-                sub = line.split(' ')
-                print(sub[0] + '\t' + sub[1] + '\t' + sub[2] + '\t' + sub[3], sep='', end='')
+            with open('file.txt', 'r', encoding='utf-8') as f:
+                for line in f:
+                    sub = line.split(' ')
+                    print(sub[0] + '\t' + sub[1] + '\t' + sub[2] + '\t' + sub[3], sep='', end='')
 
-            print()
+                print()
+
         case '3':
             print('У каких веществ отношение среднесуточной ПДК к максимальной разовой ПДК превышает D?')
-            f = open('file.txt', 'r')
-            D = float(input('Введите D:'));
-            for line in f:
-                sub = line.split(' ')
-                ratio = float(sub[2]) / float(sub[1])
-                if ratio > D:
-                    print(sub[0] + '\t' + sub[2] + '\t' + str(ratio), sep='', end='')
-                    print()
+            with open('file.txt', 'r', encoding='utf-8') as f:
+                D = float(input('Введите D: '));
+                print('[вещество, среднесуточная ПДК, отношение максимальной разовой ПДК к среднесуточная ПДК]')
+                for line in f:
+                    sub = line.split(' ')
+                    ratio = float(sub[2]) / float(sub[1])
+                    if ratio > D:
+                        print(sub[0] + '\t' + sub[2] + '\t' + str(ratio), sep='', end='')
+                        print()
+
         case '4':
             print('Выход')
             break

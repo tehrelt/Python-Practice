@@ -1,3 +1,5 @@
+# 8. Найти номера (местоположение) всех точек в строке.
+
 string = input('Введите строку: ')
 res = ''
 length = len(string)
@@ -13,4 +15,3 @@ while current < length and current != -1:
 res = res[:-2] # Удаляем последнюю запятую
 
 print(res)
-

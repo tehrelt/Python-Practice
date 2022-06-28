@@ -13,7 +13,7 @@
 # - поле «Номер цеха» int Department;
 # - конструктор с параметрами Turner(char * FIO, int Number, int Stage, int
 # Age, int Department, int Experience);
-# - метод «Изменение цеха» void ChangeDepartment (int NewDepartment).
+# - метод «Изменение цеха» void change_department (int NewDepartment).
 
 import os
 
@@ -29,7 +29,7 @@ class Employee(object):
         self.stage = stage
         self.age = age
 
-    def growUp(self, age : int):
+    def grow_up(self, age : int):
         self.age += age
 
     def show(self):
@@ -47,7 +47,7 @@ class Turner(Employee):
         self.experience = experience
         self.department = department
     
-    def changeDepartment(self, department):
+    def change_department(self, department):
         self.department = department
     
     def show(self):
@@ -58,7 +58,7 @@ class Turner(Employee):
 employees = []
 turners = []
 
-def inputInRange(message, min = 0, max = 300000000):
+def input_in_range(message, min = 0, max = 300000000):
     while True:
         try:
             value = int(input(message))
@@ -84,17 +84,17 @@ while True:
     match key:
         case '1':
             fio = input('Введите ФИО: ')
-            number = inputInRange('Введите номер: ')
-            stage = inputInRange('Введите стаж: ')
-            age = inputInRange('Введите возраст: ')
+            number = input_in_range('Введите номер: ')
+            stage = input_in_range('Введите стаж: ')
+            age = input_in_range('Введите возраст: ')
             employees.append(Employee(fio, number, stage, age))
         case '2':
             fio = input('Введите ФИО: ')
-            number = inputInRange('Введите номер: ')
-            stage = inputInRange('Введите стаж: ')
-            age = inputInRange('Введите возраст: ')
-            experience = inputInRange('Введите опыт: ')
-            department = inputInRange('Введите отдел: ')
+            number = input_in_range('Введите номер: ')
+            stage = input_in_range('Введите стаж: ')
+            age = input_in_range('Введите возраст: ')
+            experience = input_in_range('Введите опыт: ')
+            department = input_in_range('Введите отдел: ')
             turners.append(Turner(fio, number, stage, age, experience, department))
         case '3':
             i = 0
@@ -117,7 +117,7 @@ while True:
                 employee.show()
                 print('')
                 i += 1
-            index = inputInRange('Введите номер сотрудника, которого хотите удалить: ', 0, i)
+            index = input_in_range('Введите номер сотрудника, которого хотите удалить: ', 0, i)
             toremove = employees.pop(int(index)-1)
             del toremove
         case '6':
@@ -127,7 +127,7 @@ while True:
                 turner.show()
                 print('')
                 i += 1
-            index = inputInRange('Введите номер сотрудника, которого хотите удалить: ', 0, i)
+            index = input_in_range('Введите номер сотрудника, которого хотите удалить: ', 0, i)
             toremove = turners.pop(int(index)-1)
             del toremove
         case '7':
@@ -137,9 +137,9 @@ while True:
                 employee.show()
                 print('')
                 i += 1
-            index = inputInRange('Введите номер сотрудника, возраст которого хотите увеличить: ', 0, i)
-            age = inputInRange('На сколько лет увеличить возраст: ')
-            employees[int(index)-1].growUp(age)
+            index = input_in_range('Введите номер сотрудника, возраст которого хотите увеличить: ', 0, i)
+            age = input_in_range('На сколько лет увеличить возраст: ')
+            employees[int(index)-1].grow_up(age)
         case '8':
             i = 0
             for turner in turners:
@@ -147,9 +147,9 @@ while True:
                 turner.show()
                 print('')
                 i += 1
-            index = inputInRange('Введите номер сотрудника, отдел которого хотите изменить: ', 0, i)
-            department = inputInRange('Введите новый отдел: ')
-            turners[int(index)-1].changeDepartment(department)
+            index = input_in_range('Введите номер сотрудника, отдел которого хотите изменить: ', 0, i)
+            department = input_in_range('Введите новый отдел: ')
+            turners[int(index)-1].change_department(department)
         case '9':
             break
     print('\n')

@@ -18,13 +18,18 @@
 import os
 
 class Employee(object):
-    def __init__(self, fio, number, stage, age):
+    fio : str
+    number : int
+    stage : int
+    age : int
+
+    def __init__(self, fio : str, number : int, stage : int, age : int):
         self.fio = fio
         self.number = number
         self.stage = stage
         self.age = age
 
-    def growUp(self, age):
+    def growUp(self, age : int):
         self.age += age
 
     def show(self):
@@ -34,7 +39,10 @@ class Employee(object):
         print('Возраст: ' + str(self.age))
 
 class Turner(Employee):
-    def __init__(self, fio, number, stage, age, experience, department):
+    experience : int
+    department : int
+
+    def __init__(self, fio : str, number : int, stage : int, age : int, experience : int, department : int):
         super().__init__(fio, number, stage, age)
         self.experience = experience
         self.department = department
@@ -145,6 +153,3 @@ while True:
         case '9':
             break
     print('\n')
-
-
-

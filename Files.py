@@ -15,8 +15,6 @@
 
 
 import os
-import struct
-
 
 while True:
     print('1. Записать в файл')
